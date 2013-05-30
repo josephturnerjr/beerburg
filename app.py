@@ -31,7 +31,9 @@ class Beer(db.Model):
         always_prices = self.prices.filter(Price.day == None).all()
         for price in always_prices:
             price_dict[price.bar] = price.price
-        current_prices = self.prices.filter(Price.day == day, Price.start_hour <= hour, Price.end_hour >= hour).all()
+        current_prices = self.prices.filter(Price.day == day,
+                                            Price.start_hour <= hour,
+                                            Price.end_hour >= hour).all()
         for price in current_prices:
             price_dict[price.bar] = price.price
         return price_dict
@@ -61,7 +63,8 @@ class Price(db.Model):
     start_hour = db.Column(db.Integer, nullable=True)
     end_hour = db.Column(db.Integer, nullable=True)
 
-    def __init__(self, beer_id, bar_id, price, day=None, start_hour=None, end_hour=None):
+    def __init__(self, beer_id, bar_id, price,
+                 day=None, start_hour=None, end_hour=None):
         self.beer_id = beer_id
         self.bar_id = bar_id
         self.price = price
@@ -102,6 +105,24 @@ def add_beer():
 @app.route('/add_bar', methods=['GET'])
 def add_bar_form():
     return render_template('add_bar.html')
+
+
+@app.route('/add_price', methods=['POST'])
+def add_price():
+    beer = request.form.get('beer')
+    bar = request.form.get('bar')
+    price = request.form.get('price')
+    day = request.form.get('day')
+    start = request.form.get('start')
+    end = request.form.get('end')
+    if not all([beer, bar, price]):
+        abort(400)
+    if not all([start, end]):
+        abort(400)
+    p = Price(beer, bar, price, day, start, end)
+    db.session.add(p)
+    db.session.commit()
+    return str(p.id)
 
 
 @app.route('/add_bar', methods=['POST'])

@@ -6,8 +6,8 @@
 	<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
 	<title>untitled</title>
 	<meta name="author" content="Hollis Ervin">
-  <link rel="stylesheet" href="../css/bootstrap.css" type="text/css" media="screen" title="no title" charset="utf-8">
 	<!-- Date: 2013-05-30 -->
+  <link rel="stylesheet" href="/static/css/bootstrap.css" type="text/css" media="screen" title="no title" charset="utf-8">
 </head>
 <body>
   <h1>Beers</h1>
@@ -30,19 +30,27 @@
   <ul>
   {% for price in prices %}
   <li>
-  {{price }}
+  {{price}}
   </li>
   {%endfor%}
   </ul>
 
-  <table id="b-table">
+  <table id="b-table" class="table table-bordered">
+    {% for beer in beers %}
     <tr>
-      {% for beer in beers %}
       <td>
-        {{beer.brewery}} {{beer.name}}
+        <span class="brewery-name">
+          {{beer.brewery}}
+        </span>
+        <span class="beer-name">
+          {{beer.name}}
+        </span>
+        (
+        {{beer.beer_type}}
+        )
       </td>
-      {%endfor%}
     </tr>
+    {%endfor%}
   </table>
 </body>
 </html>

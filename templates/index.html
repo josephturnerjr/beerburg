@@ -1,59 +1,51 @@
-<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"
-   "http://www.w3.org/TR/html4/loose.dtd">
 
-<html lang="en">
-<head>
-	<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
-	<title>untitled</title>
-	<meta name="author" content="Hollis Ervin">
-	<!-- Date: 2013-05-30 -->
-  <link rel="stylesheet" href="/static/css/bootstrap.css" type="text/css" media="screen" title="no title" charset="utf-8">
-</head>
-<body>
-  <h1>Beers</h1>
-  <ul>
-  {% for beer in beers %}
-  <li>
-  {{beer.brewery}} {{beer.name}}
-  </li>
-  {%endfor%}
-  </ul>
-  <h1>Bars</h1>
-  <ul>
-  {% for bar in bars %}
-  <li>
-  {{bar.name}}
-  </li>
-  {%endfor%}
-  </ul>
-  <h1>Prices</h1>
-  <ul>
-  {% for price in prices %}
-  <li>
-  {{price}}
-  </li>
-  {%endfor%}
-  </ul>
-
-  <table id="b-table" class="table table-bordered">
-    {% for beer in beers %}
-    <tr>
-      <td>
-        <span class="brewery-name">
-          {{beer.brewery}}
-        </span>
-        <span class="beer-name">
-          {{beer.name}}
-        </span>
-        (
-        {{beer.beer_type}}
-        )
-      </td>
-    </tr>
-    {%endfor%}
-  </table>
-</body>
-</html>
-
-
+{%extends 'layout.html'%}
+{%block body%}
+  <div class="container">
+    <table id="b-table" class="table table-bordered">
+      <thead>
+        <tr>
+          <th>
+            Name
+          </th>
+          <th>
+            Available At
+          </th>
+          <th>
+            Full Price
+          </th>
+          <th>
+            Current Price
+          </th>
+        </tr>
+      </thead>
+      <tbody>
+        {% for beer in beers %}
+        <tr>
+          <td>
+            <span class="brewery-name">
+              {{beer.brewery}}
+            </span>
+            <span class="beer-name">
+              {{beer.name}}
+            </span>
+            ({{beer.beer_type}})
+          </td>
+          <td>
+            {% for price in beer.current_price() %}
+              {{price}}
+            {%endfor%}
+          </td>
+          <td>
+            $6
+          </td>
+          <td>
+            $3
+          </td>
+        </tr>
+        {%endfor%}
+      </tbody>
+    </table>
+  </div>
+{%endblock%}
 

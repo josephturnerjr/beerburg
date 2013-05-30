@@ -32,15 +32,13 @@
             ({{beer.beer_type}})
           </td>
           <td>
-            {% for price in beer.current_price() %}
-              {{price}}
-            {%endfor%}
+            {{beer.current_price()}}
           </td>
           <td>
             $6
           </td>
           <td>
-            $3
+            ${{beer.current_lowest_price()}}
           </td>
         </tr>
         {%endfor%}

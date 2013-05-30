@@ -38,6 +38,14 @@ class Beer(db.Model):
             price_dict[price.bar] = price.price
         return price_dict
 
+    def current_lowest_price(self):
+        prices = self.current_price()
+        if prices.values():
+            lowest = min(prices.values())
+            return (lowest, [bar for bar in prices if prices[bar] == lowest])
+        else:
+            return (None, []) 
+
 
 class Bar(db.Model):
     id = db.Column(db.Integer, primary_key=True)
@@ -102,27 +110,43 @@ def add_beer():
     return redirect('/')
 
 
-@app.route('/add_bar', methods=['GET'])
-def add_bar_form():
-    return render_template('add_bar.html')
+@app.route('/add_price', methods=['GET'])
+def add_price_form():
+    beers = Beer.query.all()
+    bars = Bar.query.all()
+    return render_template('add_price.html', beers=beers, bars=bars)
+
+
+@app.route('/add_special', methods=['GET'])
+def add_special_form():
+    beers = Beer.query.all()
+    bars = Bar.query.all()
+    return render_template('add_special.html', beers=beers, bars=bars)
 
 
 @app.route('/add_price', methods=['POST'])
 def add_price():
-    beer = request.form.get('beer')
-    bar = request.form.get('bar')
+    beer = request.form.get('beer_id')
+    bar = request.form.get('bar_id')
     price = request.form.get('price')
     day = request.form.get('day')
     start = request.form.get('start')
     end = request.form.get('end')
     if not all([beer, bar, price]):
         abort(400)
-    if not all([start, end]):
-        abort(400)
+    # if it's a speshy, need them all, otherwise, none
+    if day or start or end:
+        if not all([day, start, end]):
+            abort(400)
     p = Price(beer, bar, price, day, start, end)
     db.session.add(p)
     db.session.commit()
-    return str(p.id)
+    return redirect('/')
+
+
+@app.route('/add_bar', methods=['GET'])
+def add_bar_form():
+    return render_template('add_bar.html')
 
 
 @app.route('/add_bar', methods=['POST'])
@@ -133,7 +157,7 @@ def add_bar():
     b = Bar(name)
     db.session.add(b)
     db.session.commit()
-    return str(b.id)
+    return redirect('/')
 
 
 if __name__ == '__main__':

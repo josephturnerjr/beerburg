@@ -21,5 +21,6 @@ if __name__ == "__main__":
     beer = Beer.query.first()
     bar = Bar.query.first()
     price = Price(beer.id, bar.id, 4.0)
+    price = Price(beer.id, bar.id, 2.0, 3, 15, 18)
     db.session.add(price)
     db.session.commit()

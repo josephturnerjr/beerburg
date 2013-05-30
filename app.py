@@ -1,6 +1,7 @@
 from flask import Flask, request, abort, render_template
 from flask.ext.sqlalchemy import SQLAlchemy
 from sqlalchemy import UniqueConstraint
+import datetime
 
 app = Flask(__name__)
 app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///test.db'
@@ -21,6 +22,19 @@ class Beer(db.Model):
 
     def __repr__(self):
         return '<Beer %r>' % self.name
+
+    def current_price(self):
+        today = datetime.datetime.today()
+        day = today.weekday()
+        hour = today.hour
+        price_dict = {}
+        always_prices = self.prices.filter(Price.day == None).all()
+        for price in always_prices:
+            price_dict[price.bar] = price.price
+        current_prices = self.prices.filter(Price.day == day, Price.start_hour <= hour, Price.end_hour >= hour).all()
+        for price in current_prices:
+            price_dict[price.bar] = price.price
+        return price_dict
 
 
 class Bar(db.Model):

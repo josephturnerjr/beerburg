@@ -1,0 +1,24 @@
+<h1>Beers</h1>
+<ul>
+{% for beer in beers %}
+<li>
+{{beer.brewery}} {{beer.name}}
+</li>
+{%endfor%}
+</ul>
+<h1>Bars</h1>
+<ul>
+{% for bar in bars %}
+<li>
+{{bar.name}}
+</li>
+{%endfor%}
+</ul>
+<h1>Prices</h1>
+<ul>
+{% for price in prices %}
+<li>
+{{price }}
+</li>
+{%endfor%}
+</ul>

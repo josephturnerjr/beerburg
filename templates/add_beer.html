@@ -1,0 +1,32 @@
+{%extends 'layout.html'%}
+{% block body %}
+<div class='container'>
+<h1>Add a new beer</h1>
+<form class="form-horizontal" action='/add_beer' method='POST'>
+  <div class="control-group">
+    <label class="control-label" for="inputName">Name</label>
+    <div class="controls">
+      <input type="text" name='name' id="inputName" placeholder="Piddle'n'Vinegar">
+    </div>
+  </div>
+  <div class="control-group">
+    <label class="control-label" for="inputBrewery">Brewery</label>
+    <div class="controls">
+      <input type="text" name='brewery' id="inputBrewery" placeholder="Crap Brewery">
+    </div>
+  </div>
+  <div class="control-group">
+    <label class="control-label" for="inputType">Type</label>
+    <div class="controls">
+      <input type="text" name='beer_type' id="inputType" placeholder="American Water">
+    </div>
+  </div>
+  <div class="control-group">
+    <div class="controls">
+      <button type="submit" class="btn">Create beer</button>
+    </div>
+  </div>
+</form>
+</div>
+{%endblock%}
+

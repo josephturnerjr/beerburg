@@ -1,4 +1,4 @@
-from flask import Flask, request, abort, render_template
+from flask import Flask, request, abort, render_template, redirect
 from flask.ext.sqlalchemy import SQLAlchemy
 from sqlalchemy import UniqueConstraint
 import datetime
@@ -81,6 +81,11 @@ def hello_world():
     return render_template('index.html', beers=beers, bars=bars, prices=prices)
 
 
+@app.route('/add_beer', methods=['GET'])
+def add_beer_form():
+    return render_template('add_beer.html')
+
+
 @app.route('/add_beer', methods=['POST'])
 def add_beer():
     name = request.form.get('name')
@@ -91,7 +96,12 @@ def add_beer():
     b = Beer(name, brewery, beer_type)
     db.session.add(b)
     db.session.commit()
-    return str(b.id)
+    return redirect('/')
+
+
+@app.route('/add_bar', methods=['GET'])
+def add_bar_form():
+    return render_template('add_bar.html')
 
 
 @app.route('/add_bar', methods=['POST'])
@@ -103,6 +113,7 @@ def add_bar():
     db.session.add(b)
     db.session.commit()
     return str(b.id)
+
 
 if __name__ == '__main__':
     app.run('0.0.0.0', debug=True)

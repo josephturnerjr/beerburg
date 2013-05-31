@@ -109,7 +109,7 @@ class Price(db.Model):
 
 
 @app.route('/')
-def hello_world():
+def bar_list():
     beers = Beer.query.all()
     bars = Bar.query.all()
     prices = Price.query.all()

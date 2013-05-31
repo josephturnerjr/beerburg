@@ -1,31 +1,44 @@
+div.navbar {
+  margin-bottom: 4em;
+}
 span.brewery-name {
   font-weight: bold;
 }
 span.special {
   font-weight: bold;
 }
-td.Lager.American,
-td.Pilsner,
-td.Hefeweizen {
+span.marker {
+  width: 1.25em;
+  height: 1.25em;
+  border-radius: .8em;
+  margin-right: .5em;
+  display: block;
+  float: left;
+}
+span.marker.Lager.American,
+span.marker.Lager,
+span.marker.Wheat,
+span.marker.Wheat.American,
+span.marker.Pilsner,
+span.marker.Hefeweizen,
+span.marker.Cider {
   background-color: #fee799;
 }
-td.IPA,
-td.Pale.Ale {
+span.marker.IPA,
+span.marker.Pale.Ale {
   background-color: #e39002;
 }
-td.Ale {
+span.marker.Ale {
   background-color: #b65300;
 }
-td.Ale.Red {
+span.marker.Ale.Red {
   background-color: #771c01;
   color: white;
 }
-td.Ale.Brown {
+span.marker.Ale.Brown {
   background-color: #560c03;
-  color: white;
 }
-td.Stout,
-td.Porter {
+span.marker.Stout,
+span.marker.Porter {
   background-color: #35090a;
-  color: white;
 }

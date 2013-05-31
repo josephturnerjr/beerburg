@@ -16,7 +16,7 @@
       <tr>
         <td><span class='brewery-name'>{{beer.brewery}}</span></td>
         <td>{{beer.name}}</td>
-        <td class='{{beer.beer_type}}'>{{beer.beer_type}}</td>
+        <td> <span class='{{beer.beer_type}} marker'></span>{{beer.beer_type}}</td>
         <td class="price">
           {% set price, cheap_bars = beer.current_lowest_price() %}
           {% if price %}

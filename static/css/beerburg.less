@@ -1,4 +1,6 @@
-
+div.navbar {
+  margin-bottom: 4em;
+}
 
 span.brewery-name {
   font-weight: bold;
@@ -15,8 +17,14 @@ span.special {
 @beer-5: #560c03;
 @beer-6: #35090a;
 
-td {
-  &.Lager&.American, &.Pilsner, &.Hefeweizen {
+span.marker {
+  width: 1.25em;
+  height: 1.25em;
+  border-radius: .8em;
+  margin-right: .5em;
+  display: block;
+  float: left;
+  &.Lager.American, &.Lager, &.Wheat, &.Wheat.American, &.Pilsner, &.Hefeweizen, &.Cider {
     background-color: @beer-1;
   }
   &.IPA, &.Pale.Ale {
@@ -31,10 +39,8 @@ td {
   }
   &.Ale.Brown {
     background-color: @beer-5;
-    color: white;
   }
   &.Stout, &.Porter {
     background-color: @beer-6;
-    color: white;
   }
 }

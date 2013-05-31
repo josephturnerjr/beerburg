@@ -1,3 +1,11 @@
 span.brewery-name {
   font-weight: bold;
 }
+
+span.special {
+  font-weight: bold;
+}
+
+td.location_list {
+  text-align: right;
+}

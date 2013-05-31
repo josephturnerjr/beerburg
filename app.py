@@ -43,6 +43,10 @@ class Beer(db.Model):
             price_dict[price.bar] = price.price
         return price_dict
 
+    def normal_price(self):
+        always_prices = self.prices.filter(Price.day == None).all()
+        return min(price.price for price in always_prices)
+
     def current_lowest_price(self):
         prices = self.current_price()
         if prices.values():

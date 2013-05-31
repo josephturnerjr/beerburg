@@ -21,6 +21,9 @@
           {% set price, cheap_bars = beer.current_lowest_price() %}
           {% if price %}
           <a href="#" onclick='return false;' data-toggle='tooltip' data-original-title='{{cheap_bars|join(', ', attribute='name')}}'>{{price|currency}}</a>
+          {% if price < beer.normal_price() %}
+            (ON SALE!)
+          {% endif %}
           {% else %}
           <span class='muted'>Currently unavailable</span>
           {% endif %}

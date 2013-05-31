@@ -1,5 +1,10 @@
 div.navbar {
-  margin-bottom: 4em;
+  margin-bottom: 1em;
+}
+h1,
+h2,
+a.brand {
+  font-family: 'Amatic SC', cursive;
 }
 span.brewery-name {
   font-weight: bold;
@@ -10,6 +15,7 @@ span.special {
 span.marker {
   width: 1.25em;
   height: 1.25em;
+  border: 1px solid #444;
   border-radius: .8em;
   margin-right: .5em;
   display: block;

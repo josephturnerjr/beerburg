@@ -1,11 +1,18 @@
 span.brewery-name {
   font-weight: bold;
 }
-
 span.special {
   font-weight: bold;
 }
-
-td.location_list {
-  text-align: right;
+td.American.Lager,
+td.pilsner,
+td.hefeweizen {
+  background-color: #fee799;
+}
+td.IPA {
+  background-color: #e39002;
+}
+td.Stout {
+  background-color: #35090a;
+  color: white;
 }

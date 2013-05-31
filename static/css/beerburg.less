@@ -1,0 +1,29 @@
+
+
+span.brewery-name {
+  font-weight: bold;
+}
+
+span.special {
+  font-weight: bold;
+}
+
+@beer-1: #fee799;
+@beer-2: #e39002;
+@beer-3: #b65300;
+@beer-4: #771c01;
+@beer-5: #560c03;
+@beer-6: #35090a;
+
+td {
+  &.American&.Lager, &.pilsner, &.hefeweizen {
+    background-color: @beer-1;
+  }
+  &.IPA {
+    background-color: @beer-2;
+  }
+  &.Stout {
+    background-color: @beer-6;
+    color: white;
+  }
+}

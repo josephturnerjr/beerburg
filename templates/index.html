@@ -2,56 +2,27 @@
 {%extends 'layout.html'%}
 {%block body%}
 <div class="container">
-  
-  <div class="accordion" id="accordion2">
-    <div class="accordion-group">
-      <div class="accordion-heading">
-        <a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion2" href="#collapseOne">
-          <span class="brewery-name">
-            Foothills Brewing Co.
-          </span>
-          <span class="beer-name">
-            Hoppyum
-          </span>
-          (IPA)
-        </a>
-      </div>
-      <div id="collapseOne" class="accordion-body collapse in">
-        <div class="accordion-inner">
-          <table class="table">
-            <thead>
-              <tr>
-                <th>Available at</th>
-                <th>Regular Price</th>
-                <th>Currently</th>
-              </tr>
-            </thead>
-            <tbody>
-              <tr>
-                <td>Rivermill Map Co.</td>
-                <td>$6</td>
-                <td><span class="">$3</span></td>
-              </tr>
-              <tr>
-                <td>The Cellar</td>
-                <td>$5</td>
-                <td>$5</td>
-              </tr>
-              <tr>
-                <td>London Underground</td>
-                <td>$4.5</td>
-                <td>$4.5</td>
-              </tr>
-            </tbody>
-          </table>
-        </div>
-      </div>
-    </div>
-  </div>
-  
-  
-  
-</div>    
+  <table class="table table-bordered">
+    <thead>
+      <tr>
+        <th>Brewery</th>
+        <th>Name</th>
+        <th>Style</th>
+        <th>Best Price</th>
+      </tr>
+    </thead>
+    <tbody>
+      {% for beer in beers %}
+      <tr>
+        <td><span class='brewery-name'>{{beer.brewery}}</span></td>
+        <td>{{beer.name}}</td>
+        <td class='{{beer.beer_type}}'>{{beer.beer_type}}</td>
+        <th>{{beer.current_lowest_price()[1][0]}}</th>
+      </tr>
+      {% endfor %}
+    </tbody>
+  </table>
+</div>
 
 {%endblock%}
 

@@ -112,7 +112,7 @@ def add_beer():
     b = Beer(name, brewery, beer_type)
     db.session.add(b)
     db.session.commit()
-    return redirect('/')
+    return redirect('/add_beer')
 
 
 @app.route('/add_price', methods=['GET'])
@@ -146,7 +146,7 @@ def add_price():
     p = Price(beer, bar, price, day, start, end)
     db.session.add(p)
     db.session.commit()
-    return redirect('/')
+    return redirect('/add_price')
 
 
 @app.route('/add_bar', methods=['GET'])
@@ -162,7 +162,7 @@ def add_bar():
     b = Bar(name)
     db.session.add(b)
     db.session.commit()
-    return redirect('/')
+    return redirect('/add_bar')
 
 
 if __name__ == '__main__':

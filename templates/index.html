@@ -1,13 +1,8 @@
-
 {%extends 'layout.html'%}
 {%block body%}
-<script type="text/javascript" charset="utf-8">
-  $('body').tooltip({
-            selector: 'a[rel="tooltip"], [data-toggle="tooltip"]'
-   }); 
-</script>
+<link rel="stylesheet" href="/static/css/jquery.dataTables.css" type="text/css" media="screen" title="no title" charset="utf-8">
 <div class="container">
-  <table class="table table-bordered">
+  <table id='beer-table' class="table table-bordered">
     <thead>
       <tr>
         <th>Brewery</th>
@@ -35,6 +30,14 @@
     </tbody>
   </table>
 </div>
-
+<script type="text/javascript" src="/static/js/jquery.dataTables.min.js"></script>
+<script type="text/javascript" charset="utf-8">
+  $(document).ready(function(){
+    $('body').tooltip({
+              selector: 'a[rel="tooltip"], [data-toggle="tooltip"]'
+     }); 
+    $('#beer-table').dataTable();
+  });
+</script>
 {%endblock%}
 

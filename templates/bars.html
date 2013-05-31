@@ -1,0 +1,29 @@
+{%extends 'layout.html'%}
+{%block body%}
+<link rel="stylesheet" href="/static/css/jquery.dataTables.css" type="text/css" media="screen" title="no title" charset="utf-8">
+<div class="container">
+  {% for bar in bars %}
+    <div class='bar-detail'>
+      <h2>{{bar.name}}</h2>
+      {% set beers = bar.beers() %}
+      {% if beers %}
+      <ul>
+        {% for beer, price in beers %}
+          <li>{{beer.name}} - {{price|currency}}</li>
+        {% endfor %}
+      </ul>
+      {% endif %}
+    </div>
+  {% endfor %}
+</div>
+<script type="text/javascript" src="/static/js/jquery.dataTables.min.js"></script>
+<script type="text/javascript" charset="utf-8">
+  $(document).ready(function(){
+    $('body').tooltip({
+              selector: 'a[rel="tooltip"], [data-toggle="tooltip"]'
+     }); 
+    $('#beer-table').dataTable();
+  });
+</script>
+{%endblock%}
+

@@ -53,7 +53,7 @@ class Beer(db.Model):
             lowest = min(prices.values())
             return (lowest, [bar for bar in prices if prices[bar] == lowest])
         else:
-            return (None, []) 
+            return (None, [])
 
 
 class Bar(db.Model):
@@ -62,6 +62,21 @@ class Bar(db.Model):
 
     def __init__(self, name):
         self.name = name
+
+    def beers(self):
+        today = datetime.datetime.today()
+        day = today.weekday()
+        hour = today.hour
+        price_dict = {}
+        always_prices = self.prices.filter(Price.day == None).all()
+        for price in always_prices:
+            price_dict[price.beer] = price.price
+        current_prices = self.prices.filter(Price.day == day,
+                                            Price.start_hour <= hour,
+                                            Price.end_hour >= hour).all()
+        for price in current_prices:
+            price_dict[price.beer] = price.price
+        return sorted(price_dict.iteritems(), key=lambda x: (x[1], x[0].name))
 
     def __repr__(self):
         return '<Bar %r>' % self.name
@@ -74,7 +89,7 @@ class Price(db.Model):
         backref=db.backref('prices', lazy='dynamic'))
     bar_id = db.Column(db.Integer, db.ForeignKey('bar.id'))
     bar = db.relationship('Bar',
-        backref=db.backref('bars', lazy='dynamic'))
+        backref=db.backref('prices', lazy='dynamic'))
     price = db.Column(db.Float)
     day = db.Column(db.Integer, nullable=True)
     start_hour = db.Column(db.Integer, nullable=True)
@@ -99,6 +114,12 @@ def hello_world():
     bars = Bar.query.all()
     prices = Price.query.all()
     return render_template('index.html', beers=beers, bars=bars, prices=prices)
+
+
+@app.route('/bars/')
+def hello_world():
+    bars = Bar.query.all()
+    return render_template('bars.html', bars=bars)
 
 
 @app.route('/add_beer', methods=['GET'])

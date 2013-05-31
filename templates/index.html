@@ -1,6 +1,9 @@
 
 {%extends 'layout.html'%}
 {%block body%}
+<script type="text/javascript" charset="utf-8">
+  
+</script>
 <div class="container">
   <table class="table table-bordered">
     <thead>
@@ -17,7 +20,7 @@
         <td><span class='brewery-name'>{{beer.brewery}}</span></td>
         <td>{{beer.name}}</td>
         <td class='{{beer.beer_type}}'>{{beer.beer_type}}</td>
-        <th>{{beer.current_lowest_price()[1][0]}}</th>
+        <td class="price"><button class="btn-small btn-success">{{beer.current_lowest_price()[1][0]}}</button></th>
       </tr>
       {% endfor %}
     </tbody>

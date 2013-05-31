@@ -16,13 +16,24 @@ span.special {
 @beer-6: #35090a;
 
 td {
-  &.American&.Lager, &.pilsner, &.hefeweizen {
+  &.Lager&.American, &.Pilsner, &.Hefeweizen {
     background-color: @beer-1;
   }
-  &.IPA {
+  &.IPA, &.Pale.Ale {
     background-color: @beer-2;
   }
-  &.Stout {
+  &.Ale {
+    background-color: @beer-3;
+  }
+  &.Ale.Red {
+    background-color: @beer-4;
+    color: white;
+  }
+  &.Ale.Brown {
+    background-color: @beer-5;
+    color: white;
+  }
+  &.Stout, &.Porter {
     background-color: @beer-6;
     color: white;
   }

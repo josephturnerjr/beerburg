@@ -4,15 +4,28 @@ span.brewery-name {
 span.special {
   font-weight: bold;
 }
-td.American.Lager,
-td.pilsner,
-td.hefeweizen {
+td.Lager.American,
+td.Pilsner,
+td.Hefeweizen {
   background-color: #fee799;
 }
-td.IPA {
+td.IPA,
+td.Pale.Ale {
   background-color: #e39002;
 }
-td.Stout {
+td.Ale {
+  background-color: #b65300;
+}
+td.Ale.Red {
+  background-color: #771c01;
+  color: white;
+}
+td.Ale.Brown {
+  background-color: #560c03;
+  color: white;
+}
+td.Stout,
+td.Porter {
   background-color: #35090a;
   color: white;
 }

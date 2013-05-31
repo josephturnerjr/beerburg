@@ -55,7 +55,7 @@
     </div>
     <label class="control-label" for="inputStart">Ending hour</label>
     <div class="controls">
-      <select name='start'>
+      <select name='end'>
         {% for hour in range(5, 22) %}
         <option value='{{hour}}'>{{(hour - 1) % 12 + 1}}{{'AM' if hour < 12 else 'PM'}}</option>
         {% endfor %}

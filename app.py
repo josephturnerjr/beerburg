@@ -8,6 +8,11 @@ app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///test.db'
 db = SQLAlchemy(app)
 
 
+@app.template_filter('currency')
+def format_currency(value):
+    return "${:,.2f}".format(value)
+
+
 class Beer(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     name = db.Column(db.String(80))

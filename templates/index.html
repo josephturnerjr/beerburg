@@ -2,14 +2,16 @@
 {%extends 'layout.html'%}
 {%block body%}
 <script type="text/javascript" charset="utf-8">
-  
+  $('body').tooltip({
+            selector: 'a[rel="tooltip"], [data-toggle="tooltip"]'
+   }); 
 </script>
 <div class="container">
   <table class="table table-bordered">
     <thead>
       <tr>
         <th>Brewery</th>
-        <th>Name</th>
+        <th>Beer</th>
         <th>Style</th>
         <th>Best Price</th>
       </tr>
@@ -20,7 +22,14 @@
         <td><span class='brewery-name'>{{beer.brewery}}</span></td>
         <td>{{beer.name}}</td>
         <td class='{{beer.beer_type}}'>{{beer.beer_type}}</td>
-        <td class="price"><button class="btn-small btn-success">{{beer.current_lowest_price()[1][0]}}</button></th>
+        <td class="price">
+          {% set price, cheap_bars = beer.current_lowest_price() %}
+          {% if price %}
+          <a href="#" onclick='return false;' data-toggle='tooltip' data-original-title='{{cheap_bars|join(', ', attribute='name')}}'>{{price|currency}}</a>
+          {% else %}
+          <span class='muted'>Currently unavailable</span>
+          {% endif %}
+        </td>
       </tr>
       {% endfor %}
     </tbody>

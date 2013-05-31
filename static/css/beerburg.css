@@ -1,31 +1,51 @@
+div.navbar {
+  margin-bottom: 1em;
+}
+h1,
+h2,
+a.brand {
+  font-family: 'Amatic SC', cursive;
+}
 span.brewery-name {
   font-weight: bold;
 }
 span.special {
   font-weight: bold;
 }
-td.Lager.American,
-td.Pilsner,
-td.Hefeweizen {
+span.marker {
+  width: 14px;
+  height: 20px;
+  border: 1px solid #444;
+  border-radius: 0px 0px .4em .4em;
+  margin-right: .5em;
+  display: block;
+  float: left;
+  box-shadow: 4px 0px 1px -2px rgba(255, 255, 255, 0.5) inset, 5px 0px 11px 0px rgba(255, 255, 255, 0.25) inset, -5px 0px 10px -3px rgba(0, 0, 0, 0.33) inset, -2px 0px 3px -1px rgba(0, 0, 0, 0.5) inset;
+}
+span.marker.Lager.American,
+span.marker.Lager,
+span.marker.Wheat,
+span.marker.Wheat.American,
+span.marker.Pilsner,
+span.marker.Hefeweizen,
+span.marker.Cider {
   background-color: #fee799;
 }
-td.IPA,
-td.Pale.Ale {
+span.marker.IPA,
+span.marker.Pale.Ale {
   background-color: #e39002;
 }
-td.Ale {
+span.marker.Ale {
   background-color: #b65300;
 }
-td.Ale.Red {
+span.marker.Ale.Red {
   background-color: #771c01;
   color: white;
 }
-td.Ale.Brown {
+span.marker.Ale.Brown {
   background-color: #560c03;
-  color: white;
 }
-td.Stout,
-td.Porter {
+span.marker.Stout,
+span.marker.Porter {
   background-color: #35090a;
-  color: white;
 }
